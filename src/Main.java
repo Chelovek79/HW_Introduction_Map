@@ -68,19 +68,16 @@ public class Main {
         stoDepartment.testingOnSto();
         System.out.println(" ");
 
-        // Создание Мар: ключ - бренд авто; значение - весь список механников. Вывод в консоль.
+        // Создание Мар: ключ - бренд авто; значение - механик обслуживающий данный авто. Вывод в консоль.
 
-        Map<String, List<Mechanic>> listAvtoMech = new HashMap<>();
-        listAvtoMech.put(transport.participants.get(1).getBrand(), (List<Mechanic>) transport.getMech(1));
-        listAvtoMech.put(transport.participants.get(3).getBrand(), (List<Mechanic>) transport.getMech(1));
-        listAvtoMech.put(transport.participants.get(6).getBrand(), (List<Mechanic>) transport.getMech(1));
+        Map<String, Mechanic> listAvtoMech = new HashMap<>();
+        listAvtoMech.put(transport.participants.get(0).getBrand(), transport.participants.get(0).getMechanic());
+        listAvtoMech.put(transport.participants.get(8).getBrand(), transport.participants.get(8).getMechanic());
+        listAvtoMech.put(transport.participants.get(5).getBrand(), transport.participants.get(5).getMechanic());
+        listAvtoMech.put(transport.participants.get(11).getBrand(), transport.participants.get(11).getMechanic());
 
-        for (Map.Entry<String, List<Mechanic>> listPrintMap : listAvtoMech.entrySet()){
-            System.out.println(listPrintMap.getKey());
-            for (Mechanic listPrintList: transport.getMech(1)){
-                System.out.println("\t" + listPrintList);
-
-            }
+        for (Map.Entry<String, Mechanic> listPrintMap : listAvtoMech.entrySet()){
+            System.out.println(listPrintMap.getKey() + " " + listPrintMap.getValue());
         }
     }
 }
