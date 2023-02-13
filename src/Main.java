@@ -6,11 +6,11 @@ import transport.Transport;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws TransportTypeException {
 
         DbTransport transport = new DbTransport();
         DbDrivers drivers = new DbDrivers();
-        Sto s = new Sto();
+        Sto stoDepartment = new Sto();
 
         transport.getDriverCarName(0, "C"); // Общие сведения и готовность;
         transport.getDriverCarName(2, "D");
@@ -37,16 +37,30 @@ public class Main {
 //            System.err.println(e + "\n");           // Exception на диагностику "Bus";
         }
 
-        transport.creationtListOfCompetition();       // Лист участников соревнований.
+        transport.creationtListOfCompetition();       // Лист участников соревнований;
         System.out.println(" ");
 
         transport.repair(1);                       // Ремонт произведён;
         transport.doingTo(4);                      // "ТО" произведено;
         System.out.println(" ");
 
-        s.addingToSto();                              // Добавляем в очередь на "ТО";
+
+        stoDepartment.addingToSto(3);       // Добавление транспорта на "СТО";
+        stoDepartment.addingToSto(9);
+        stoDepartment.addingToSto(2);
+        stoDepartment.addingToSto(6);
+        stoDepartment.addingToSto(11);
+        stoDepartment.addingToSto(0);
         System.out.println(" ");
 
-        s.testingOnSto();                             // Проходим "ТО" с удалением из списка;
+        stoDepartment.testingOnSto();                  // Прохождение "ТО".
+        stoDepartment.testingOnSto();
+        stoDepartment.testingOnSto();
+        stoDepartment.testingOnSto();
+        stoDepartment.testingOnSto();
+        stoDepartment.testingOnSto();
+        stoDepartment.testingOnSto();
+        stoDepartment.testingOnSto();
+
     }
 }

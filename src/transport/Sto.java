@@ -3,30 +3,36 @@ package transport;
 import java.util.LinkedList;
 import java.util.Queue;
 
+import static check.Check.testAvtoToSto;
+
 public class Sto {
 
     public Sto() {
     }
 
     Queue<Transport> sto = new LinkedList<>();
+    DbTransport car = new DbTransport();
+    int numberTestOnSto = 0;
 
-    public void addingToSto() {
-        DbTransport a = new DbTransport();
-        for (int i = 0; i < a.participants.size(); i++) {
-            if (a.enteringCarToSto(i)) {
-                sto.offer(a.participants.get(i));
-                System.out.println("Автомобиль : " + a.participants.get(i).getBrand() + " " +
-                        a.participants.get(i).getModel() + " - добавлен в очередь на 'ТО'.");
-            }
+    public void addingToSto(int numberCar) {
+        if (testAvtoToSto(car.participants.get(numberCar).getCategory())) {
+            sto.offer(car.participants.get(numberCar));
+            System.out.println("Автообиль - " + car.participants.get(numberCar).getBrand() + " " + car.participants.get(numberCar).getModel() +
+                    " добавлен на прохождение 'ТО'.");
+        } else {
+            System.out.println("Автобусы не проходят 'ТО'");
         }
     }
 
     public void testingOnSto() {
-        int h = sto.size();
-        for (int i = 0; i < h; i++) {
-            System.out.println(sto.element().getBrand() + " " + sto.element().getModel() +
-                    " - документы о пройденном 'ТО' готовы.");
-            sto.remove();
+        if (sto.size() != 0) {
+            System.out.println(sto.element().passDiagnostics());
+            sto.poll();
+        } else {
+            numberTestOnSto++;
+            if (numberTestOnSto == 1) {
+                System.out.println("Все автомобили прошли 'ТО'. Список автомобилей пуст.");
+            } else System.out.print("");
         }
     }
 }
