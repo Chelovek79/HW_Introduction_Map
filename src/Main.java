@@ -1,8 +1,13 @@
 import check.TransportTypeException;
 import drivers.DbDrivers;
 import transport.DbTransport;
+import transport.Mechanic;
 import transport.Sto;
 import transport.Transport;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class Main {
 
@@ -61,6 +66,21 @@ public class Main {
         stoDepartment.testingOnSto();
         stoDepartment.testingOnSto();
         stoDepartment.testingOnSto();
+        System.out.println(" ");
 
+        // Создание Мар: ключ - бренд авто; значение - весь список механников. Вывод в консоль.
+
+        Map<String, List<Mechanic>> listAvtoMech = new HashMap<>();
+        listAvtoMech.put(transport.participants.get(1).getBrand(), (List<Mechanic>) transport.getMech(1));
+        listAvtoMech.put(transport.participants.get(3).getBrand(), (List<Mechanic>) transport.getMech(1));
+        listAvtoMech.put(transport.participants.get(6).getBrand(), (List<Mechanic>) transport.getMech(1));
+
+        for (Map.Entry<String, List<Mechanic>> listPrintMap : listAvtoMech.entrySet()){
+            System.out.println(listPrintMap.getKey());
+            for (Mechanic listPrintList: transport.getMech(1)){
+                System.out.println("\t" + listPrintList);
+
+            }
+        }
     }
 }

@@ -99,4 +99,7 @@ public class DbTransport {
                 throw new TransportTypeException("'Автобусы' диагностику не проходят...");
         }
     }
+    public List<Mechanic> getMech(int i){
+        return (List<Mechanic>) participants.get(i).getListMechanic();
+    }
 }

@@ -6,14 +6,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-    public abstract class Transport {
+public abstract class Transport {
     private final String brand;
     private final String model;
     private final Mechanic mechanic;
     private final String category;
     private final String id;
 
-        public Transport(String brand, String model, String category) {
+    public Transport(String brand, String model, String category) {
         this.brand = Check.checkingString(brand, "Самоделка");
         this.model = Check.checkingString(model, "1");
         this.mechanic = mechanics.get(RndMechanic());
@@ -21,15 +21,18 @@ import java.util.List;
         this.id = "";
     }
 
-        public String getCategory() {
-            return category;
-        }
+    public String getCategory() {
+        return category;
+    }
 
-        List<Mechanic> mechanics = new ArrayList<>(Arrays.asList(
+    List<Mechanic> mechanics = new ArrayList<>(Arrays.asList(
             new Mechanic("Cидоров Иван", "Таксопарк №3"),
             new Mechanic("Фролов Никита", "Гаражный кооператив 'Орбита'"),
             new Mechanic("Север Илья", "на все руки ...")));
 
+    public List<Mechanic> getListMechanic () {
+        return (List<Mechanic>) mechanics;
+    }
     public void addingMechanics(String name, String company) {
         Mechanic newMechanic = new Mechanic();
         newMechanic.setMechanicName(name);
