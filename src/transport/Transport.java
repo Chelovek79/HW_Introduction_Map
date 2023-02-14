@@ -5,15 +5,16 @@ import check.Check;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
-    public abstract class Transport {
+public abstract class Transport {
     private final String brand;
     private final String model;
     private final Mechanic mechanic;
     private final String category;
     private final String id;
 
-        public Transport(String brand, String model, String category) {
+    public Transport(String brand, String model, String category) {
         this.brand = Check.checkingString(brand, "Самоделка");
         this.model = Check.checkingString(model, "1");
         this.mechanic = mechanics.get(RndMechanic());
@@ -21,15 +22,18 @@ import java.util.List;
         this.id = "";
     }
 
-        public String getCategory() {
-            return category;
-        }
+    public String getCategory() {
+        return category;
+    }
 
-        List<Mechanic> mechanics = new ArrayList<>(Arrays.asList(
+    List<Mechanic> mechanics = new ArrayList<>(Arrays.asList(
             new Mechanic("Cидоров Иван", "Таксопарк №3"),
             new Mechanic("Фролов Никита", "Гаражный кооператив 'Орбита'"),
             new Mechanic("Север Илья", "на все руки ...")));
 
+    public List<Mechanic> getListMechanic () {
+        return (List<Mechanic>) mechanics;
+    }
     public void addingMechanics(String name, String company) {
         Mechanic newMechanic = new Mechanic();
         newMechanic.setMechanicName(name);
@@ -84,5 +88,18 @@ import java.util.List;
 
     public Mechanic getMechanic() {
         return mechanic;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Transport transport = (Transport) o;
+        return Objects.equals(brand, transport.brand) && Objects.equals(model, transport.model) && Objects.equals(category, transport.category) && Objects.equals(id, transport.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(brand, model, category, id);
     }
 }
